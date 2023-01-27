@@ -1,18 +1,17 @@
-let listaTareas = [],
+let listaTareas = []
 
-    const objetoTarea = {
 
-        id: '',
-        tarea: '',
-        descripción: ''
+const objetoTarea = {
+    tarea: '',
+    descripcion: ''
 
-    }
+}
 
 let editando = false;
 
 const formulario = document.querySelector('#formulario');
-const tareaImput = document.querySelector('#Tarea');
-const tareaDescripcion = document.querySelector('#Descripción');
+const nombreTareaInput = document.querySelector('#nombreTarea');
+const descripcionTareaInput = document.querySelector('#descripcionTarea');
 const btnAgregar = document.querySelector('#btnAgregar');
 
 formulario.addEventListener('submit', validarFormulario);
@@ -20,39 +19,42 @@ formulario.addEventListener('submit', validarFormulario);
 function validarFormulario(e) {
     e.preventDefault();
 
-    if (tareaImput.value === '' || tareaDescripcion.value === '') {
+    
+    
+    if (nombreTareaInput.value === '' || descripcionTareaInput.value === '') {
         alert('Campos Obligatorios');
         return
     }
-
+    
     if (editando) {
         //editarTarea();
         editando = false;
     }
     else {
-        objetoTarea.id = Date.now();
-        objetoTarea.tarea = tareaImput.value;
-        objetoTarea.descripción = tareaDescripcion.value;
 
-        agregarTarea();
+        let objetoTarea = {
+             tarea : nombreTareaInput.value,
+             descripcion: descripcionTareaInput.value
+
+        };
+        
+        agregarTarea(objetoTarea);
     }
 }
 
-function agregarTarea() {
-    listaTareas.push({ ...objetoTarea })
-
-    mostrarTarea();
+function agregarTarea(objetoTarea) {
+    listaTareas.push(objetoTarea);
+    mostrarTarea(listaTareas);
 }
 
-function mostrarTarea() {
-    const divTarea = document.querySelector ('.div-tarea'
+function mostrarTarea(listaTareas) {
+    const divTarea = document.querySelector ('.div-tareas');
     
-    listaTareas.forEach(tarea => { 
-        const { id, tarea, descripción } = tarea;
+    listaTareas.forEach (miTarea => { 
+        const {tarea, descripcion } = miTarea;
         const parrafo = document.createElement('p');
-        parrafo.textContent = '${id} - ${tarea} - ${descripción} -';
-        parrafo.dataset.id = id;
-
+        parrafo.textContent = tarea + " " + descripcion ;
+        
         const editarBoton = document.createElement('button');
         //editarBoton.onclick = () => cargarTarea (tarea);
         editarBoton.textContent = 'Editar';
