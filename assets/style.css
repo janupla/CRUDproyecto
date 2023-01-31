@@ -138,19 +138,6 @@ hr {
     background: red;
 }
 
-.logo-redes {
-    width: 50px;
-    height: 50px;
-    float: right;
-    margin-bottom: 20px;
-    margin-right: 10px;
-}
-
-.grupo-2{
-    margin-top: 30px;
-    text-align: center;
-}
-
 @media (max-width:600px) {
     .contenedor {
         grid-template-columns: 1fr;
