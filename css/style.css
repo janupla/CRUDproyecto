@@ -138,6 +138,11 @@ hr {
     background: red;
 }
 
+.grupo-2{
+    margin-top: 30px;
+    text-align: center;
+}
+
 @media (max-width:600px) {
     .contenedor {
         grid-template-columns: 1fr;
